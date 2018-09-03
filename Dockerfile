@@ -1,5 +1,8 @@
 # Create a minimal Centos 7 installation with Java 8
 # to form the basis for building Hadoop clusters, Cassandra rings, etc
+#
+# The Dockerfiles build on one another from one lab to the next,
+# so the different labs will be identified by tags
 
 FROM centos:7
 

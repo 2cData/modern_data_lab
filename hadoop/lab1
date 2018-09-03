@@ -20,3 +20,12 @@ java -version
 echo $JAVA_HOME
 ```
 You (should) now have a running container that have Centos running ```java version "1.8.0_131``` with a JAVA_HOME environment variable pointed to ```/usr/java/default```.
+
+While building a linux container running java is helpful, it does somewhat lack sustained dramatic impact. Open a different tab and enter ```docker ps -l``` to get the container id of this running instance. We're going to save this image as minimal_modern_data. For example:
+```
+~ $ docker ps -l
+CONTAINER ID        IMAGE                   COMMAND             CREATED             STATUS              PORTS               NAMES
+a8ee4590fefa        2cdata/minimal_hadoop   "/bin/bash"         54 seconds ago      Up 59 seconds                           xenodochial_swirles
+~ $ docker commit a8ee4590fefa 2cdata/minimal_modern_data
+sha256:52af3af502f040dc76b3fd2d1c95fd4ede354efec6020f78bb489b0a0a420bb3
+```

@@ -1,4 +1,6 @@
+#TODO recreate the base image to only have java. Now it has hadoop, too
 ## Step one - create docker image
+
 The preferred method for doing new things that may not work out well is to do it a container. This has two great advantages: you can't trash your machine and you can send the image to someone else once it works and it will definitely work on their machine.
 
 tl;dr

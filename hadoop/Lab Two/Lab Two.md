@@ -63,6 +63,11 @@ $ chmod 0600 ~/.ssh/authorized_keys
 
 At this point, we have a container that has ssl enabled, but we have not exposed the default port (22). The easiest way to expose the port is to commit these changes, exit, and restart with the ports exposed on the command line.
 
+```
+docker ps -l
+docker commit {CONTAINERID} ???/pseudo-distributed_hadoop
+
+```
 
 Still doesn't work because port 22 is not exposed in docker. Save and exit
 
@@ -70,3 +75,7 @@ https://stackoverflow.com/questions/19897743/exposing-a-port-on-a-live-docker-co
 sudo docker ps
 sudo docker commit <containerid> <foo/live>
 sudo docker run -i -p 22 -p 8000:80 -m /data:/data -t <foo/live> /bin/bash
+
+
+OK. Go to https://labs.play-with-docker.com/
+May need to rethink this with Dockerfiles

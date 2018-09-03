@@ -30,10 +30,10 @@ You will need a credit or debit card to setup an AWS account. We will only use t
 
 ### Container Management
 #### Docker
+The preferred method for doing new things that may not work out well is to do it a container. This has two great advantages: you can't trash your machine and you can send the image to someone else once it works and it will definitely work on their machine.
+
  - [setup Docker locally](https://docs.docker.com/get-started/ "Get Started with Docker")
  - [create Docker Hub account](https://docs.docker.com/docker-id/ "Create Docker ID")
-
-The preferred method for doing new things that may not work out well is to do it a container. This has two great advantages: you can't trash your machine and you can send the image to someone else once it works and it will definitely work on their machine.
 
 tl;dr
 ```
@@ -84,7 +84,25 @@ $ docker commit a8ee4590fefa 2cdata/minimal_modern_data
 
 I said there were two advantages to Docker: not breaking your machine and avoiding "works on my machine". I consider Docker as fundamental to development in this space as Git and Docker Hub plays the same role as GitHub for a team. Assuming you have set up and logged into Docker Hub, it's just another push.  
 ```
-docker push 2cdata/minimal_modern_data
+$ docker push 2cdata/minimal_modern_data
+# Note: replace 2cdata with your Docker Hub repo name.
 ```
 
-If you go back to the top and look at the tl;dr command, you can be proud of yourself for working through this fundamental introduction to a core concept.
+Delete the container.
+```
+# Copy the image id and paste into the command below
+$ docker rm CONTAINER a8ee4590fefa
+
+```
+Pull the container that you pushed.
+```
+$ docker pull 2cdata/minimal_modern_data
+# Note: replace 2cdata with your Docker Hub repo name.
+```
+
+```
+$ docker run -i -t 2cdata/minimal_modern_data
+# Note: replace 2cdata with your Docker Hub repo name.
+```
+
+You are now running your own container.

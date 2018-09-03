@@ -51,15 +51,15 @@ $ docker pull centos
 # Run in interactive mode
 $ docker run -i -t centos
 
-# change to your home directory
-$ cd ~
+# update the OS
+$ yum update -y
 
 # Install wget to easily download files
-$ yum install wget
+$ yum install -y wget
 
 # Download, install and verify Oracle's Java
 $ wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.rpm"
-$ yum localinstall jdk-8u181-linux-x64.rpm
+$ yum localinstall -y jdk-8u181-linux-x64.rpm
 $ java -version
 
 # Add JAVA_HOME as an environmental variable
@@ -106,3 +106,22 @@ $ docker run -i -t 2cdata/minimal_modern_data
 ```
 
 You are now running your own container.
+
+-----
+Connect Docker Hub to GitHub
+
+
+
+Connect GitHub to Google Cloud to deploy Docker in Kubernetes
+In github, when I went to merge a PR that had a Dockerfile, it offered to pick an app that can manage automated builds
+I set it up only for select repositories and just picked the modern_data_lab
+chose my google account (personal)
+Clicked the green Authorize button
+It took me to GCP
+ - create a new project (modern-data-lab) (underscores not allowed)
+ - 120 free build minutes per day
+
+It retrned me to Github with the confirmation
+I navigated to GCP dashboard https://console.cloud.google.com/
+Navigate to Compute Engine (this can take a minute or more)
+I couldn't really figure out what it did

@@ -53,3 +53,17 @@ Scroll up to the top of the output and read from the beginning. You can learn a 
 You are not expected to understand what you are seeing just yet. More detailed explanations come later; but it's helpful to have early exposure. It's just Java.
 
 Now that we have a working single node Hadoop environment, we should push this image to Docker Hub.
+
+```
+# In a new tab, find the container id of yur running Docker container
+$ docker ps -l
+
+# Commit this container as minimun_viable_hadoop
+$ docker commit 10536ef35c92 2cdata/minimum_viable_hadoop
+# Remember to change 2cdata to your Docker Hub account
+
+# Push the new image to your Docker hub
+$ docker push 2cdata/minimum_viable_hadoop
+# Remember to change 2cdata to your Docker Hub account
+
+```

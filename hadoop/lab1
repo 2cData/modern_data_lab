@@ -1,31 +1,34 @@
 # Lab One - Minimum Viable Hadoop
 The goal is to set up a single node Hadoop cluster on your local machines manually.
 
-## Step one - create docker image
-The preferred method for doing new things that may not work out well is to do it a container. This has two great advantages: you can't trash your machine and you can send the image to someone else once it works and it will definitely work on their machine.
-
-We will create a Centos image with Java 8 to form a base for all of our future modern data work. For the most part, you will be deploying to Red Hat Enterprise Linux in Production. Using Centos in Dev and Stage is a low cost way to make sure that your environments are consistent across the development lifecycle. This is Factor X in a [12 Factor App](https://12factor.net/ "12 Factor App"). At the time of this writing Java 9 was out but Java 8 was the minimum required for most modern data platforms and likely all you will get at most enterprises.
-
-From a terminal, run
+## Launch base Docker image
 ```
-docker pull centos
-docker run -i -t centos
-cd ~
-yum install wget
-wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.rpm"
-yum localinstall jdk-8u181-linux-x64.rpm
-echo "export JAVA_HOME=/usr/java/default/" > /etc/profile.d/java_home.sh
-rm ~/jdk-8u181-linux-x64.rpm
-java -version
-echo $JAVA_HOME
+# Pull the base image you created in the README and run interactively
+$ docker pull 2cdata/minimal_modern_data
+$ docker run -i -t 2cdata/minimal_modern_data
 ```
-You (should) now have a running container that have Centos running ```java version "1.8.0_131``` with a JAVA_HOME environment variable pointed to ```/usr/java/default```.
 
-While building a linux container running java is helpful, it does somewhat lack sustained dramatic impact. Open a different tab and enter ```docker ps -l``` to get the container id of this running instance. We're going to save this image as minimal_modern_data. For example:
+## Download Hadoop
+
 ```
-~ $ docker ps -l
-CONTAINER ID        IMAGE                   COMMAND             CREATED             STATUS              PORTS               NAMES
-a8ee4590fefa        2cdata/minimal_hadoop   "/bin/bash"         54 seconds ago      Up 59 seconds                           xenodochial_swirles
-~ $ docker commit a8ee4590fefa 2cdata/minimal_modern_data
-sha256:52af3af502f040dc76b3fd2d1c95fd4ede354efec6020f78bb489b0a0a420bb3
+# Create a destination for Hadoop
+$ cd /usr
+
+# Download Hadoop
+$ wget http://www-us.apache.org/dist/hadoop/common/current2/hadoop-2.9.1.tar.gz
+$ wget http://www-us.apache.org/dist/hadoop/common/current2/hadoop-2.9.1.tar.gz.asc
+$ wget http://www-us.apache.org/dist/hadoop/common/KEYS
+
+# Verify Hadoop download
+$ gpg --import KEYS
+$ gpg --verify hadoop-2.9.1.tar.gz.asc hadoop-2.9.1.tar.gz
+$ rm KEYS
+$ rm hadoop-2.9.1.tar.gz.asc
+
+# Uncompress Hadoop tarball
+$ tar zxvf hadoop-2.9.1.tar.gz
+$ rm hadoop-2.9.1.tar.gz
+
+# Create a symbolic link to the directory
+$ ln -s /usr/hadoop/hadoop-2.9.1 /usr/hadoop 
 ```

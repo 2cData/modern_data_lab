@@ -1,5 +1,5 @@
 # Lab One - Minimum Viable Hadoop
-The goal is to set up a single node Hadoop cluster on your local machines manually.
+The goal is to set up a single node Hadoop cluster on your local machine and run a MapReduce application manually.
 
 ## Launch base Docker image
 ```
@@ -43,6 +43,13 @@ $  /usr/hadoop/bin/hadoop jar /usr/hadoop/share/hadoop/mapreduce/hadoop-mapreduc
 # Check the results of the mapreduce operation
 $ cat ~/output/*
 # Should return `1	dfsadmin`
+
+# Remove the output directory since it will throw an error if you try to rerun in.
+$ rm -rf ~/output
 ```
 
-Scroll up to the top of the output and read from the beginning. You can learn a lot about the map reduce process by reading the stack trace.
+Scroll up to the top of the output and read from the beginning. You can learn a lot about the map reduce process by reading the stack trace. And you can learn even more by reading the [source code directly](https://github.com/apache/hadoop/blob/trunk/hadoop-mapreduce-project/hadoop-mapreduce-examples/src/main/java/org/apache/hadoop/examples/Grep.java).
+
+You are not expected to understand what you are seeing just yet. More detailed explanations come later; but it's helpful to have early exposure. It's just Java.
+
+Now that we have a working single node Hadoop environment, we should push this image to Docker Hub.

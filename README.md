@@ -23,7 +23,7 @@ I recommend going through the [Git from the CLI training](https://services.githu
 
 ### Cloud Services
 #### Amazon Web Services
-You will need a credit or debit card to setup an AWS account. We will only use the free tier for this class.
+You will need a credit or debit card to setup an AWS account. We will only use the free tier for this class. If you do not have a credit or debit card, don't worry. We will still be creating local clusters.
 
 - [create an AWS account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/ "Create AWS account")
 - [launch and destroy a virtual machine](https://aws.amazon.com/getting-started/tutorials/launch-a-virtual-machine/?trk=gs_card "Create a machine instance")

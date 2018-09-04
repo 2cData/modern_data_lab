@@ -15,6 +15,14 @@ You will need to perform the following:
  - [navigate to the course repo](https://github.com/2cData/modern_data_lab "Course repo")
  - [fork the course repo to your repo ](https://guides.github.com/activities/forking/ "Fork a repo")
 
+To integrate GitHub with Docker Hub to create a CI/CD pipeline for deploying Dockerfiles, you will need to configure the Docker Service. From GitHub,
+1. Settings 
+2. Integrations & Services
+3. Services
+4. select Docker from the Services drop-down menu.
+
+Optionally, if you are going to take advantage of the cloud-based elements of the training, you should install [Google Cloud Build](https://github.com/marketplace/google-cloud-build "Google Cloud Build"). This will be configured to build Docker images on Google Cloud Platform when Dockerfiles are committed to the master branch. This is optional, but serves to show the importance of Continuous Integration/Continuous Deployment (CI/CD) to the modern enterprise.
+
 #### Git
 I recommend going through the [Git from the CLI training](https://services.github.com/on-demand/github-cli/ "Git CLI") to understand how to work with git and github from the command line.
 
@@ -22,28 +30,33 @@ I recommend going through the [Git from the CLI training](https://services.githu
  - [clone your repo](https://services.github.com/on-demand/github-cli/clone-repo-cli "Clone your repo")
 
 ### Cloud Services
-#### Amazon Web Services
-You will need a credit or debit card to setup an AWS account. We will only use the free tier for this class. If you do not have a credit or debit card, don't worry. We will still be creating local clusters.
+You will need a credit or debit card to setup a cloud account. We will only use the free tier for this class. If you do not have a credit or debit card, don't worry. We will still be creating local clusters.
 
+In this class, we will evaluate multi-cloud deployments from Day One. While most companies recognize the potential value in moving to the cloud, there are still concerns around putting a company's entire technology portfolio into a single provider. So while there is an additional administrative overhead in managing multiple cloud providers, a sensible separation of concerns can make for a stronger business case. We will use Google Cloud Platform to deploy our Hadoop cluster using Docker in Kubernetes and send processed data to Amazon Web Services to provide data to Lambda.   
+
+#### Amazon Web Services
+Amazon Web Services will host
 - [create an AWS account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/ "Create AWS account")
-- [launch and destroy a virtual machine](https://aws.amazon.com/getting-started/tutorials/launch-a-virtual-machine/?trk=gs_card "Create a machine instance")
+- [create an S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/create-bucket.html "Create an S3 bucket")
+
+#### Google Cloud Platform
+- [create a Google Cloud Platform account](https://cloud.google.com/billing/docs/how-to/manage-billing-account "Create GCP account")
+- [link Github to Google cloud Build](https://github.com/marketplace/google-cloud-build "Link GitHub to GCP")
 
 ### Container Management
 #### Docker
-The preferred method for doing new things that may not work out well is to do it a container. This has two great advantages: you can't trash your machine and you can send the image to someone else once it works and it will definitely work on their machine.
+The preferred method for doing new things that may not work out well is to do it in a disposable container. This has two great advantages: you can't trash your machine and you can send the image to someone else once it works and it will definitely work on their machine.
 
  - [setup Docker locally](https://docs.docker.com/get-started/ "Get Started with Docker")
  - [create Docker Hub account](https://docs.docker.com/docker-id/ "Create Docker ID")
 
-tl;dr
-```
-# Pull my image from my repo at 2cdata
-$ docker pull 2cdata/minimal_modern_data
-```
+ Linking Docker to GitHub enables builds to be created in Docker Hub whenever a Dockerfile is updated in master.
+ - [link Docker Hub to Git Hub](https://docs.docker.com/docker-hub/github/#creating-an-automated-build "Link Docker Hub to Git Hub")
 
-We will create a Centos image with Java 8 to form a base for all of our future modern data work. For the most part, you will be deploying to Red Hat Enterprise Linux in Production. Using Centos in Dev and Stage is a low cost way to make sure that your environments are consistent across the development lifecycle. This is Factor X in a [12 Factor App](https://12factor.net/ "12 Factor App"). At the time of this writing Java 9 was out but Java 8 was the minimum required for most modern data platforms and likely all you will get at most enterprises.
+### Pulling it all together
 
-From a terminal, run
+We will create a Centos image with Java 8 to form a base for all of our future modern data work. For the most part, you will be deploying to Red Hat Enterprise Linux in Production. Using Centos in Dev and Stage is a low cost way to make sure that your environments are consistent across the development lifecycle. This is Factor 10 in a [12 Factor App](https://12factor.net/ "12 Factor App"). At the time of this writing Java 9 was out but Java 8 was the minimum version required for most modern data platforms and likely all you will get at most enterprises.
+
 ```
 # Get a base Centos image
 $ docker pull centos
@@ -71,7 +84,10 @@ $ rm ~/jdk-8u181-linux-x64.rpm
 ```
 You (should) now have a running container that have Centos running `java version "1.8.0_131"` with a JAVA_HOME environment variable pointed to `/usr/java/default`.
 
-While building a linux container running java is helpful, it does somewhat lack sustained dramatic impact. Open a different tab and enter `docker ps -l` to get the container id of this running instance. We're going to save this image as minimal_modern_data. For example:
+While building a linux container running java is helpful, it does somewhat lack sustained dramatic impact. We will be manually executing commands, pulling them together into a Dockerfile and building a docker image with a tag related to the Lab.
+
+
+Open a different tab and enter `docker ps -l` to get the container id of this running instance. We're going to save this image as minimal_modern_data. For example:
 ```
 # List docker containers
 $ docker ps -l
@@ -121,7 +137,20 @@ It took me to GCP
  - create a new project (modern-data-lab) (underscores not allowed)
  - 120 free build minutes per day
 
-It retrned me to Github with the confirmation
+It returned me to Github with the confirmation
 I navigated to GCP dashboard https://console.cloud.google.com/
-Navigate to Compute Engine (this can take a minute or more)
-I couldn't really figure out what it did
+Modify the GCP triggers to only build from master
+Navigate to Container Registry and select Images
+Click on the image you created
+  click on the Show pull command
+  docker pull gcr.io/modern-data-lab/modern_data_lab:4a061b509c34315de4dec524ae8ee74ed7f78f51
+  TODO
+    -bash: /home/mr_david_callaghan/.profile: No such file or directory
+    mr_david_callaghan@cs-6000-devshell-vm-8a408fd8-f25f-4d76-bac5-8cb171aba859:~$ docker pull gcr.io/modern-data-lab/modern_data_lab:4a061b509c34315de4dec524ae8ee74ed7f78f51
+    Error response from daemon: unauthorized: You don't have the needed permissions to perform this operation, and you may have invalid credentials. To authenticate your request, follow the steps in: https://cloud.google.com/container-registry/docs/advanced-authentication
+
+
+  click the Deploy to GCE button
+    change to micro to stay in the free tier
+    click on create and click on the instance link
+    Open in browser window

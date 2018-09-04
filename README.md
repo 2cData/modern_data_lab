@@ -15,7 +15,13 @@ You will need to perform the following:
  - [navigate to the course repo](https://github.com/2cData/modern_data_lab "Course repo")
  - [fork the course repo to your repo ](https://guides.github.com/activities/forking/ "Fork a repo")
 
-Optionally, if you are going to take advantage of the cloud-based elements of the training, you should install [Google Cloud Build](https://github.com/marketplace/google-cloud-build "Google Cloud Build"). This will be configured to build Docker images on Google Cloud Platform when Dockerfiles are committed to the master branch. This is optional, but serves to show the importance of Continuous Integration/Continuous Deplyoment (CI/CD) to the modern enterprise.
+To integrate GitHub with Docker Hub to create a CI/CD pipeline for deploying Dockerfiles, you will need to configure the Docker Service. From GitHub,
+1. Settings 
+2. Integrations & Services
+3. Services
+4. select Docker from the Services drop-down menu.
+
+Optionally, if you are going to take advantage of the cloud-based elements of the training, you should install [Google Cloud Build](https://github.com/marketplace/google-cloud-build "Google Cloud Build"). This will be configured to build Docker images on Google Cloud Platform when Dockerfiles are committed to the master branch. This is optional, but serves to show the importance of Continuous Integration/Continuous Deployment (CI/CD) to the modern enterprise.
 
 #### Git
 I recommend going through the [Git from the CLI training](https://services.github.com/on-demand/github-cli/ "Git CLI") to understand how to work with git and github from the command line.
@@ -51,7 +57,6 @@ The preferred method for doing new things that may not work out well is to do it
 
 We will create a Centos image with Java 8 to form a base for all of our future modern data work. For the most part, you will be deploying to Red Hat Enterprise Linux in Production. Using Centos in Dev and Stage is a low cost way to make sure that your environments are consistent across the development lifecycle. This is Factor 10 in a [12 Factor App](https://12factor.net/ "12 Factor App"). At the time of this writing Java 9 was out but Java 8 was the minimum version required for most modern data platforms and likely all you will get at most enterprises.
 
-We will be manually executing commands, pulling them together into a Dockerfile and building a docker image with a tag related to the Lab.
 ```
 # Get a base Centos image
 $ docker pull centos
@@ -79,7 +84,10 @@ $ rm ~/jdk-8u181-linux-x64.rpm
 ```
 You (should) now have a running container that have Centos running `java version "1.8.0_131"` with a JAVA_HOME environment variable pointed to `/usr/java/default`.
 
-While building a linux container running java is helpful, it does somewhat lack sustained dramatic impact. Open a different tab and enter `docker ps -l` to get the container id of this running instance. We're going to save this image as minimal_modern_data. For example:
+While building a linux container running java is helpful, it does somewhat lack sustained dramatic impact. We will be manually executing commands, pulling them together into a Dockerfile and building a docker image with a tag related to the Lab.
+
+
+Open a different tab and enter `docker ps -l` to get the container id of this running instance. We're going to save this image as minimal_modern_data. For example:
 ```
 # List docker containers
 $ docker ps -l

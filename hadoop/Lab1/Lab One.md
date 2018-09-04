@@ -1,7 +1,7 @@
 # Lab One - Minimum Viable Hadoop
 The goal is to set up a single node Hadoop cluster on your local machine and run a MapReduce application manually.
 
-You will need the name of your Docker Hub account you created in the Prerequisites. 
+You will need the name of your Docker Hub account you created in the Prerequisites.
 
 ## Launch base Docker image
 ```
@@ -54,18 +54,9 @@ Scroll up to the top of the output and read from the beginning. You can learn a 
 
 You are not expected to understand what you are seeing just yet. More detailed explanations come later; but it's helpful to have early exposure. It's just Java.
 
-Now that we have a working single node Hadoop environment, we should push this image to Docker Hub.
-
+Now that we have a working single node Hadoop environment, we should push this image to Docker Hub using the lab-specific tag.
 ```
-# In a new tab, find the container id of yur running Docker container
-$ docker ps -l
-
-# Commit this container as minimun_viable_hadoop
-$ docker commit 10536ef35c92 ???/minimum_viable_hadoop
-# Remember to change 2cdata to your Docker Hub account
-
-# Push the new image to your Docker hub
-$ docker push ???/minimum_viable_hadoop
-
-
+# From /hadoop/lab1 directory
+$ docker build -t 2cdata/modern_data_lab:lab-one .
+$ docker push 2cdata/modern_data_lab:lab-one
 ```

@@ -16,7 +16,7 @@ You will need to perform the following:
  - [fork the course repo to your repo ](https://guides.github.com/activities/forking/ "Fork a repo")
 
 To integrate GitHub with Docker Hub to create a CI/CD pipeline for deploying Dockerfiles, you will need to configure the Docker Service. From GitHub,
-1. Settings 
+1. Settings
 2. Integrations & Services
 3. Services
 4. select Docker from the Services drop-down menu.
@@ -85,6 +85,19 @@ $ rm ~/jdk-8u181-linux-x64.rpm
 You (should) now have a running container that have Centos running `java version "1.8.0_131"` with a JAVA_HOME environment variable pointed to `/usr/java/default`.
 
 While building a linux container running java is helpful, it does somewhat lack sustained dramatic impact. We will be manually executing commands, pulling them together into a Dockerfile and building a docker image with a tag related to the Lab.
+
+From Docker Hub menu:
+1. Click the Create drop-down
+2. Select Create Automated Build
+3. Click on the Create Auto-Build Github image (which is there because we linked the accounts earlier)
+4. Select the modern_data_lab repository
+5. Click the "Click here to customize behavior"
+6. For now, just change the Docker tag from "latest" to "prerequisite". Each lab will add a different entry to this list.
+7. Click the Create button
+
+Whenever you commit a Dockerfile at the root directory level to the master branch, a new build tagged "prerequisite" will be added to the modern_data_lab image on your Docker Hub.
+
+
 
 
 Open a different tab and enter `docker ps -l` to get the container id of this running instance. We're going to save this image as minimal_modern_data. For example:

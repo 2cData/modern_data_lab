@@ -55,8 +55,9 @@ Scroll up to the top of the output and read from the beginning. You can learn a 
 You are not expected to understand what you are seeing just yet. More detailed explanations come later; but it's helpful to have early exposure. It's just Java.
 
 Now that we have a working single node Hadoop environment, we should push this image to Docker Hub using the lab-specific tag.
-```
-# From /hadoop/lab1 directory
-$ docker build -t 2cdata/modern_data_lab:lab-one .
-$ docker push 2cdata/modern_data_lab:lab-one
-```
+
+From the modern_data_lab Build Settings page, add a new row:
+1. Type : Branch
+2. Name : master
+3. Dockerfile location: /hadoop/lab1
+4. Docker tag name: lab-one  

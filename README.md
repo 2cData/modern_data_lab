@@ -26,7 +26,7 @@ I recommend going through the [Git from the CLI training](https://services.githu
 ### Cloud Services
 You will need a credit or debit card to setup a cloud account. We will only use the free tier for this class. If you do not have a credit or debit card, don't worry. We will still be creating local clusters.
 
-In this class, we will evaluate multi-cloud deployments from Day One. While most companies recognize the potential value in moving to the cloud, there are still concerns around putting a company's entire technology portfolio into a single provider. So while there is a additional administrative overhead in managing multiple cloud providers, a sensible separation of concerns can make for a stronger business case. We will use Google Cloud Platform to deploy our Hadoop cluster using Docker in Kubernetes and send processed data to Amazon Web Services to provide data to Lambda.   
+In this class, we will evaluate multi-cloud deployments from Day One. While most companies recognize the potential value in moving to the cloud, there are still concerns around putting a company's entire technology portfolio into a single provider. So while there is an additional administrative overhead in managing multiple cloud providers, a sensible separation of concerns can make for a stronger business case. We will use Google Cloud Platform to deploy our Hadoop cluster using Docker in Kubernetes and send processed data to Amazon Web Services to provide data to Lambda.   
 
 #### Amazon Web Services
 Amazon Web Services will host
@@ -35,11 +35,11 @@ Amazon Web Services will host
 
 #### Google Cloud Platform
 - [create a Google Cloud Platform account](https://cloud.google.com/billing/docs/how-to/manage-billing-account "Create GCP account")
-- [link Github to Google cloud Build]
+- [link Github to Google cloud Build](https://github.com/marketplace/google-cloud-build "Link GitHub to GCP")
 
 ### Container Management
 #### Docker
-The preferred method for doing new things that may not work out well is to do it a container. This has two great advantages: you can't trash your machine and you can send the image to someone else once it works and it will definitely work on their machine.
+The preferred method for doing new things that may not work out well is to do it in a disposable container. This has two great advantages: you can't trash your machine and you can send the image to someone else once it works and it will definitely work on their machine.
 
  - [setup Docker locally](https://docs.docker.com/get-started/ "Get Started with Docker")
  - [create Docker Hub account](https://docs.docker.com/docker-id/ "Create Docker ID")

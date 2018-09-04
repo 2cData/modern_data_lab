@@ -45,19 +45,13 @@ The preferred method for doing new things that may not work out well is to do it
  - [create Docker Hub account](https://docs.docker.com/docker-id/ "Create Docker ID")
 
  Linking Docker to GitHub enables builds to be created in Docker Hub whenever a Dockerfile is updated in master.
- - [link Docker Hub to Git Hub]()
-TODO
+ - [link Docker Hub to Git Hub](https://docs.docker.com/docker-hub/github/#creating-an-automated-build "Link Docker Hub to Git Hub")
 
+### Pulling it all together
 
-tl;dr
-```
-# Pull my image from my repo at 2cdata
-$ docker pull 2cdata/minimal_modern_data
-```
+We will create a Centos image with Java 8 to form a base for all of our future modern data work. For the most part, you will be deploying to Red Hat Enterprise Linux in Production. Using Centos in Dev and Stage is a low cost way to make sure that your environments are consistent across the development lifecycle. This is Factor 10 in a [12 Factor App](https://12factor.net/ "12 Factor App"). At the time of this writing Java 9 was out but Java 8 was the minimum version required for most modern data platforms and likely all you will get at most enterprises.
 
-We will create a Centos image with Java 8 to form a base for all of our future modern data work. For the most part, you will be deploying to Red Hat Enterprise Linux in Production. Using Centos in Dev and Stage is a low cost way to make sure that your environments are consistent across the development lifecycle. This is Factor X in a [12 Factor App](https://12factor.net/ "12 Factor App"). At the time of this writing Java 9 was out but Java 8 was the minimum required for most modern data platforms and likely all you will get at most enterprises.
-
-From a terminal, run
+We will be manually executing commands, pulling them together into a Dockerfile and building a docker image with a tag related to the Lab.
 ```
 # Get a base Centos image
 $ docker pull centos

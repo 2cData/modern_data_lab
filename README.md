@@ -97,26 +97,6 @@ From Docker Hub menu:
 
 Whenever you commit a Dockerfile at the root directory level to the master branch, a new build tagged "prerequisite" will be added to the modern_data_lab image on your Docker Hub.
 
-
-
-
-Open a different tab and enter `docker ps -l` to get the container id of this running instance. We're going to save this image as minimal_modern_data. For example:
-```
-# List docker containers
-$ docker ps -l
-
-# Copy the CONTAINER ID to paste into the commit. For example:
-$ docker commit a8ee4590fefa 2cdata/minimal_modern_data
-
-# Note: replace 2cdata with your Docker Hub repo name.
-```
-
-I said there were two advantages to Docker: not breaking your machine and avoiding "works on my machine". I consider Docker as fundamental to development in this space as Git and Docker Hub plays the same role as GitHub for a team. Assuming you have set up and logged into Docker Hub, it's just another push.  
-```
-$ docker push 2cdata/minimal_modern_data
-# Note: replace 2cdata with your Docker Hub repo name.
-```
-
 Delete the container.
 ```
 # Copy the image id and paste into the command below
@@ -125,45 +105,23 @@ $ docker rm CONTAINER a8ee4590fefa
 ```
 Pull the container that you pushed.
 ```
-$ docker pull 2cdata/minimal_modern_data
-# Note: replace 2cdata with your Docker Hub repo name.
-```
-
-```
-$ docker run -i -t 2cdata/minimal_modern_data
+$ docker pull 2cdata/modern_data_lab:prerequisite
+$ docker run -i -t  2cdata/modern_data_lab:prerequisite
 # Note: replace 2cdata with your Docker Hub repo name.
 ```
 
 You are now running your own container.
 
 -----
-Connect Docker Hub to GitHub
+### Deploy Docker images to Kubrnetes in Google Cloud Platform
+Since we have already added the Google Cloud Build app to GitHub, any build that contains a Dockerfile and has been configured to deploy to Google will do so automatically.
 
-
-
-Connect GitHub to Google Cloud to deploy Docker in Kubernetes
-In github, when I went to merge a PR that had a Dockerfile, it offered to pick an app that can manage automated builds
-I set it up only for select repositories and just picked the modern_data_lab
-chose my google account (personal)
-Clicked the green Authorize button
-It took me to GCP
- - create a new project (modern-data-lab) (underscores not allowed)
- - 120 free build minutes per day
-
-It returned me to Github with the confirmation
-I navigated to GCP dashboard https://console.cloud.google.com/
-Modify the GCP triggers to only build from master
-Navigate to Container Registry and select Images
-Click on the image you created
-  click on the Show pull command
-  docker pull gcr.io/modern-data-lab/modern_data_lab:4a061b509c34315de4dec524ae8ee74ed7f78f51
-  TODO
-    -bash: /home/mr_david_callaghan/.profile: No such file or directory
-    mr_david_callaghan@cs-6000-devshell-vm-8a408fd8-f25f-4d76-bac5-8cb171aba859:~$ docker pull gcr.io/modern-data-lab/modern_data_lab:4a061b509c34315de4dec524ae8ee74ed7f78f51
-    Error response from daemon: unauthorized: You don't have the needed permissions to perform this operation, and you may have invalid credentials. To authenticate your request, follow the steps in: https://cloud.google.com/container-registry/docs/advanced-authentication
-
-
-  click the Deploy to GCE button
-    change to micro to stay in the free tier
-    click on create and click on the instance link
-    Open in browser window
+From the Kubernetes Engine menu
+1. Create Cluster
+2. Deploy the Container
+  - remember to create t1-micro instances
+3. Click Deploy
+4. Select your Docker image
+5. Change the application name to hadoop-1
+6. Deploy to the cluster you just created
+7. Expose

@@ -1,4 +1,4 @@
-FROM modern_data_lab:lab-one
+FROM modern_data_lab:prerequisite AS lab_one
 
 MAINTAINER 2CData <david.callaghan@2c-data.com>
 
@@ -9,3 +9,6 @@ wget http://www-us.apache.org/dist/hadoop/common/hadoop-3.1.1/hadoop-3.1.1.tar.g
 tar zxvf hadoop-3.1.1.tar.gz && \
 rm hadoop-3.1.1.tar.gz && \
 ln -s /usr/hadoop-3.1.1 /usr/hadoop
+
+# Set environment variables.
+ENV HADOOP_HOME /usr/hadoop

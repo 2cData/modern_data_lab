@@ -11,7 +11,7 @@ $ docker run -i -t ???/minimal_modern_data
 ```
 
 ## Download Hadoop
-We will be following, with some modification, Apche's instructure for setting up a [single-node Hadoop cluster](https://hadoop.apache.org/docs/r3.1.1/hadoop-project-dist/hadoop-common/SingleCluster.html).
+We will be following, with some modification, Apache's instructions for setting up a [single-node Hadoop cluster](https://hadoop.apache.org/docs/r3.1.1/hadoop-project-dist/hadoop-common/SingleCluster.html).
 ```
 # Create a destination for Hadoop
 $ cd /usr

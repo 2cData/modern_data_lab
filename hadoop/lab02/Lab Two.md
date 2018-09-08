@@ -3,7 +3,7 @@
 
 The goal is to set up a pseudo-distributed network and a single-machine distributed network using [Docker networking](https://docs.docker.com/network/network-tutorial-standalone/ "Docker networking").
 
-In pseudo-distributed operations, each Hadoop daemon runs in a separate Java process. In a classic distributed operations environment, Hadoop would be run in multiple servers. Since we ae using Docker containers, we can leverage Docker Network to create a Hadoop cluster in a single machine.
+In pseudo-distributed operations, each Hadoop daemon runs in a separate Java process. In a classic distributed operations environment, Hadoop would be run in multiple servers. Since we are using Docker containers, we can leverage Docker Network to create a Hadoop cluster in a single machine.
 
 ## Launch base Hadoop Docker image
 ```
@@ -79,3 +79,12 @@ sudo docker run -i -p 22 -p 8000:80 -m /data:/data -t <foo/live> /bin/bash
 
 OK. Go to https://labs.play-with-docker.com/
 May need to rethink this with Dockerfiles
+
+
+Now that we have a working single node Hadoop environment, we should push this image to Docker Hub using the lab-specific tag.
+
+From the modern_data_lab Build Settings page, add a new row:
+1. Type : Branch
+2. Name : master
+3. Dockerfile location: /hadoop/lab2
+4. Docker tag name: lab-two

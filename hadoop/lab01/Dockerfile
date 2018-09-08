@@ -1,4 +1,4 @@
-FROM modern_data_lab:prerequisite AS lab_one
+FROM 2cdata/modern_data_lab:prerequisite AS lab_one
 
 MAINTAINER 2CData <david.callaghan@2c-data.com>
 

@@ -1,4 +1,4 @@
-# Lab Two - Psuedo Distributed Hadoop
+# Lab Three - Psuedo Distributed Hadoop
 
 
 The goal is to set up a pseudo-distributed network and a single-machine distributed network using [Docker networking](https://docs.docker.com/network/network-tutorial-standalone/ "Docker networking").

@@ -1,6 +1,6 @@
 # Create a HAdoop cluster
 
-FROM 2cdata/modern_data_lab:lab_one AS lab_two
+FROM 2cdata/modern_data_lab:lab-one AS lab_two
 
 MAINTAINER 2CData <david.callaghan@2c-data.com>
 

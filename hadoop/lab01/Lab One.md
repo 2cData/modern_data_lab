@@ -57,5 +57,5 @@ Now that we have a working single node Hadoop environment, we should push this i
 From the modern_data_lab Build Settings page, add a new row:
 1. Type : Branch
 2. Name : master
-3. Dockerfile location: /hadoop/lab1
+3. Dockerfile location: /hadoop/lab01
 4. Docker tag name: lab-one  

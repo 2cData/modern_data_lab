@@ -8,10 +8,10 @@ In pseudo-distributed operations, each Hadoop daemon runs in a separate Java pro
 ## Launch base Hadoop Docker image
 ```
 # Pull the image you created in Lab One
-$ docker pull ???/minimum_viable_hadoop
+$ docker pull {your repo}/modern_data_lab:lab-one
 
 # Run your image in interactive mode
-$ docker run -i -t ???/minimum_viable_hadoop
+$ docker run -i -t  {your repo}/modern_data_lab:lab-one
 
 # Verify this is the Hadoop image and it works
 $ /usr/hadoop/bin/hadoop version
@@ -23,12 +23,12 @@ As a Hadoop Administrator, you will become very familiar with these four configu
 * mapred-default.xml
 * yarn-default.xml
 
-Environmental variables can also be found in `/usr/hadoop/etc/hadoop/hadoop-env.sh`. Hadoop just a pretty good job of inferring locations assuming you performed a standard install, but we will set them explicitely later.
+Environmental variables can also be found in `/usr/hadoop/etc/hadoop/hadoop-env.sh`. Hadoop just a pretty good job of inferring locations assuming you performed a standard install, but we will set them explicitly later.
 
 First, we will set up a pseudo-distributed network.
 ```
 # Change to the configuration directory
-$ cd /usr/hadoop/ec/hadoop
+$ cd /usr/hadoop/etc/hadoop
 
 # Add a default filesystem property to core-site.xml:
   <configuration>
@@ -50,7 +50,8 @@ $ cd /usr/hadoop/ec/hadoop
 The next step is to configure networking on the system.
 
 ssh localhost
-ssh was not found, so install
+
+bash: ssh: command not found
 ```
 # Install ssh on the server
 $ yum -y install openssh-server openssh-clients
@@ -61,20 +62,41 @@ $ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 $ chmod 0600 ~/.ssh/authorized_keys
 ```
 
+```
+$ ssh localhost
+ssh: connect to host localhost port 22: Cannot assign requested address
+```
+
+systemctl enable sshd.service
+
 At this point, we have a container that has ssl enabled, but we have not exposed the default port (22). The easiest way to expose the port is to commit these changes, exit, and restart with the ports exposed on the command line.
 
 ```
-docker ps -l
-docker commit {CONTAINERID} ???/pseudo-distributed_hadoop
+$ docker ps -l
+
+CONTAINER ID        IMAGE                            COMMAND             CREATED             STATUS              PORTS               NAMES
+975665bb5fbb        2cdata/modern_data_lab:lab-one   "bash"              About an hour ago   Up About an hour                        wonderful_babbage
+~ $
+
+$ docker commit 975665bb5fbb 2cdata/modern_data_lab:lab-two
 
 ```
 
 Still doesn't work because port 22 is not exposed in docker. Save and exit
 
+exit docker image and run
+docker run -i -p 22 -t 2cdata/modern_data_lab:lab-two
+
+try this
+https://blog.newnius.com/how-to-quickly-setup-a-hadoop-cluster-in-docker.html
+
+
 https://stackoverflow.com/questions/19897743/exposing-a-port-on-a-live-docker-container
 sudo docker ps
 sudo docker commit <containerid> <foo/live>
 sudo docker run -i -p 22 -p 8000:80 -m /data:/data -t <foo/live> /bin/bash
+
+docker run -i -p 22 -p 8000:80 -m /data:/data -t <foo/live> /bin/bash
 
 
 OK. Go to https://labs.play-with-docker.com/

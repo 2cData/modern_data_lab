@@ -40,4 +40,5 @@ RUN mkdir -p ~/hdfs/namenode && \
 # format namenode
 RUN /usr/local/hadoop/bin/hdfs namenode -format
 
-  $ sbin/start-dfs.sh
+# TODO do I need this?
+# sbin/start-dfs.sh

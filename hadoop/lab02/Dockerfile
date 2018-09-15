@@ -1,6 +1,6 @@
 # Create a HAdoop cluster
 
-FROM modern_data_lab:lab_one AS lab_two
+FROM 2cdata/modern_data_lab:lab_one AS lab_two
 
 MAINTAINER 2CData <david.callaghan@2c-data.com>
 
@@ -39,3 +39,5 @@ RUN mkdir -p ~/hdfs/namenode && \
 
 # format namenode
 RUN /usr/local/hadoop/bin/hdfs namenode -format
+
+  $ sbin/start-dfs.sh

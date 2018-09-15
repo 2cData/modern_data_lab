@@ -7,7 +7,7 @@ RUN cd ~ && \
 wget http://www-us.apache.org/dist/hadoop/common/hadoop-3.1.1/hadoop-3.1.1.tar.gz && \
 tar zxvf hadoop-3.1.1.tar.gz && \
 rm hadoop-3.1.1.tar.gz && \
-ln -s /usr/hadoop-3.1.1 /usr/hadoop
+ln -s ~/hadoop-3.1.1/ /usr/hadoop
 
 # Set environment variables.
 ENV HADOOP_HOME /usr/hadoop

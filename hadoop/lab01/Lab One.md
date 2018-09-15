@@ -6,17 +6,15 @@ You will need the name of your Docker Hub account you created in the Prerequisit
 ## Launch base Docker image
 ```
 # Pull the base image you created in the README and run interactively.
-$ docker pull ???/minimal_modern_data
-$ docker run -i -t ???/minimal_modern_data
+$ docker pull {your repo}/modern_data_lab:prerequisite
+$ docker run -i -t  {your repo}/modern_data_lab:prerequisite
 ```
 
 ## Download Hadoop
 We will be following, with some modification, Apache's instructions for setting up a [single-node Hadoop cluster](https://hadoop.apache.org/docs/r3.1.1/hadoop-project-dist/hadoop-common/SingleCluster.html).
 ```
-# Create a destination for Hadoop
-$ cd /usr
-
 # Download Hadoop
+$ cd ~
 $ wget http://www-us.apache.org/dist/hadoop/common/hadoop-3.1.1/hadoop-3.1.1.tar.gz
 
 # Uncompress Hadoop tarball

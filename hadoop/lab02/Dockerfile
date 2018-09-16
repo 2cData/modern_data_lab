@@ -7,9 +7,13 @@ MAINTAINER 2CData <david.callaghan@2c-data.com>
 # Install ssh without key
 RUN yum -y install openssh-server openssh-clients && \
     ssh-keygen -t rsa -f ~/.ssh/id_rsa -P '' && \
-    cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && \
-    systemctl enable sshd && \
-    systemctl start sshd.service
+    cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+
+# 91mFailed to get D-Bus connection: Operation not permitted
+RUN systemctl enable sshd
+RUN systemctl start sshd.service
+
+# https://hub.docker.com/r/jdeathe/centos-ssh/~/dockerfile/
 
 EXPOSE 22
 

@@ -1,5 +1,4 @@
 # Create a minimal Hadoop install
-
 FROM 2cdata/modern_data_lab:prerequisite AS lab-one
 
 MAINTAINER 2CData <david.callaghan@2c-data.com>

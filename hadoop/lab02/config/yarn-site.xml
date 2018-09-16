@@ -13,6 +13,6 @@
     <property>
         <name>yarn.resourcemanager.hostname</name>
         <value>hadoop-master</value>
-        <desciption>hostname of the resource manager (0.0.0.0 by default)</description>
+        <description>hostname of the resource manager (0.0.0.0 by default)</description>
     </property>
 </configuration>

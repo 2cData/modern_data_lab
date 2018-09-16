@@ -62,7 +62,8 @@ RUN mkdir -p ~/hdfs/namenode && \
     mkdir $HADOOP_HOME/logs
 
 # format namenode
-RUN /usr/hadoop/bin/hdfs namenode -format
+# TODO run this manually first to get the command right
+#RUN /usr/hadoop/bin/hdfs namenode -format
 
 # TODO do I need this
 # sbin/start-dfs.sh

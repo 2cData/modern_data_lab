@@ -1,4 +1,4 @@
-# Create a HAdoop cluster
+# Create a Hadoop cluster
 
 FROM 2cdata/modern_data_lab:lab-one AS lab-two
 
@@ -45,4 +45,5 @@ ENV YARN_NODEMANAGER_USER root
 # format namenode
 RUN /usr/hadoop/bin/hdfs namenode -format
 
-CMD [ "sh", "-c", "service ssh start; bash"]
+#RUN service sshd start
+#CMD [ "sh", "-c", "service sshd start; bash"]

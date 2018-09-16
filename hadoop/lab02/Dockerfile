@@ -6,7 +6,6 @@ MAINTAINER 2CData <david.callaghan@2c-data.com>
 
 # Install ssh without key
 RUN yum -y install openssh-server openssh-clients && \
-    yum clean all && \
     ssh-keygen -t rsa -f ~/.ssh/id_rsa -P '' && \
     cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
@@ -47,3 +46,5 @@ RUN /usr/hadoop/bin/hdfs namenode -format
 
 #RUN service sshd start
 #CMD [ "sh", "-c", "service sshd start; bash"]
+
+#rpm --query centos-release

@@ -3,13 +3,16 @@
     <property>
         <name>yarn.nodemanager.aux-services</name>
         <value>mapreduce_shuffle</value>
+        <description>Identify the shuffle class</description>
     </property>
     <property>
         <name>yarn.nodemanager.aux-services.mapreduce_shuffle.class</name>
         <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+        <description>Identify the shuffle class</description>
     </property>
     <property>
         <name>yarn.resourcemanager.hostname</name>
         <value>hadoop-master</value>
+        <desciption>hostname of the resource manager (0.0.0.0 by default)</description>
     </property>
 </configuration>

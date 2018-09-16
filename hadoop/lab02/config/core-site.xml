@@ -3,5 +3,6 @@
     <property>
         <name>fs.defaultFS</name>
         <value>hdfs://hadoop-master:9000/</value>
+        <description>Provide the uri of the name node</description>
     </property>
 </configuration>

@@ -3,5 +3,6 @@
     <property>
         <name>mapreduce.framework.name</name>
         <value>yarn</value>
+        <description>Set to YARN in more recent versions of Hadoop</description>
     </property>
 </configuration>

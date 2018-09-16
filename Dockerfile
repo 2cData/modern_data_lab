@@ -4,7 +4,7 @@
 # The Dockerfiles build on one another from one lab to the next,
 # so the different labs will be identified by tags
 
-FROM centos:6.5 AS prerequisite
+FROM centos:6.6 AS prerequisite
 
 MAINTAINER 2CData <david.callaghan@2c-data.com>
 

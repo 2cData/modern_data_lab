@@ -4,7 +4,7 @@
 # The Dockerfiles build on one another from one lab to the next,
 # so the different labs will be identified by tags
 
-FROM centos:7 AS prerequisite
+FROM centos:6.5 AS prerequisite
 
 MAINTAINER 2CData <david.callaghan@2c-data.com>
 
@@ -20,7 +20,6 @@ RUN yum update -y && \
 # Set environment variables.
 ENV HOME /root
 ENV JAVA_HOME /usr/java/default/
-#ENV PATH=$PATH:$JAVA_HOME
 
 # Define working directory.
 WORKDIR /root

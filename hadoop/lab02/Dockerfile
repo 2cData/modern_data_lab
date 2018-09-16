@@ -7,8 +7,9 @@ MAINTAINER 2CData <david.callaghan@2c-data.com>
 # Install ssh without key
 RUN ssh-keygen -t rsa -f ~/.ssh/id_rsa -P '' && \
     cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && \
-    chmod 0600 ~/.ssh/authorized_keys && \
-    systemctl enable sshd && \
+    chmod 0600 ~/.ssh/authorized_keys
+
+RUN systemctl enable sshd && \
     systemctl start sshd.service
 
 EXPOSE 22

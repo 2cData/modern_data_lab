@@ -99,14 +99,23 @@ sudo docker run -i -p 22 -p 8000:80 -m /data:/data -t <foo/live> /bin/bash
 docker run -i -p 22 -p 8000:80 -m /data:/data -t <foo/live> /bin/bash
 
 
-OK. Go to https://labs.play-with-docker.com/
-May need to rethink this with Dockerfiles
-
 
 Now that we have a working single node Hadoop environment, we should push this image to Docker Hub using the lab-specific tag.
 
 From the modern_data_lab Build Settings page, add a new row:
 1. Type : Branch
 2. Name : master
-3. Dockerfile location: /hadoop/lab2
+3. Dockerfile location: /hadoop/lab02
 4. Docker tag name: lab-two
+
+
+---
+now lets try and run it with this centos 6.6 build
+docker pull 2cdata/modern_data_lab:lab-two
+git clone https://github.com/2cData/modern_data_lab.git
+docker network create --driver=bridge hadoop
+cd modern_data_lab/hadoop/lab02
+
+this didn't work so I had to do this
+chmod a+x start-container.sh
+TODO how did he do it?

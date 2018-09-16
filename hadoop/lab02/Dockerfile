@@ -11,10 +11,12 @@ RUN yum -y install openssh-server openssh-clients && \
 
 # 91mFailed to get D-Bus connection: Operation not permitted
 RUN systemctl enable sshd
-RUN systemctl start sshd.service
+#RUN systemctl start sshd.service
+RUN systemctl start sshd
 
 # https://hub.docker.com/r/jdeathe/centos-ssh/~/dockerfile/
-
+# if this doesn't work, I'm jus going to go down to centos 6.5
+# https://hub.docker.com/r/sequenceiq/hadoop-docker/~/dockerfile/
 EXPOSE 22
 
 # modify hadoop files

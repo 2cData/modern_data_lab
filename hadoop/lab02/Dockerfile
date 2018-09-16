@@ -4,10 +4,7 @@ FROM 2cdata/modern_data_lab:lab-one AS lab-two
 
 MAINTAINER 2CData <david.callaghan@2c-data.com>
 
-# Install ssh without key
-RUN yum -y install openssh-server openssh-clients && \
-    ssh-keygen -t rsa -f ~/.ssh/id_rsa -P '' && \
-    cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+
 
 # 91mFailed to get D-Bus connection: Operation not permitted
 # this is how this is supposed to work
@@ -26,9 +23,14 @@ rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 VOLUME [ "/sys/fs/cgroup"
 
+# Install ssh without key
+RUN yum -y install openssh-server openssh-clients && \
+    yum clean all && \
+    ssh-keygen -t rsa -f ~/.ssh/id_rsa -P '' && \
+    cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
-RUN systemctl enable sshd
-RUN systemctl start sshd.service
+RUN systemctl enable sshd.service
+#RUN systemctl start sshd.service
 
 # https://hub.docker.com/r/jdeathe/centos-ssh/~/dockerfile/
 # if this doesn't work, I'm jus going to go down to centos 6.5

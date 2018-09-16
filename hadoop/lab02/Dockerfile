@@ -10,7 +10,7 @@ MAINTAINER 2CData <david.callaghan@2c-data.com>
 # this is how this is supposed to work
 # https://github.com/docker-library/docs/tree/master/centos
 # note the centos s very annoying in Docker for this reason
-# Ubuntu is better at tgis time
+# Ubuntu is better at this time
 ENV container docker
 RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
 systemd-tmpfiles-setup.service ] || rm -f $i; done); \
@@ -50,9 +50,9 @@ RUN cp /tmp/ssh_config ~/.ssh/config && \
     cp /tmp/slaves $HADOOP_HOME/etc/hadoop/slaves
 
 # manage executable scripts
-RUN mv /tmp/start-hadoop.sh ~/start-hadoop.sh && \
+RUN cp /tmp/start-hadoop.sh ~/start-hadoop.sh && \
+    cp /tmp/run-wordcount.sh ~/run-wordcount.sh && \
     chmod +x ~/start-hadoop.sh && \
-    mv /tmp/run-wordcount.sh ~/run-wordcount.sh && \
     chmod +x ~/run-wordcount.sh && \
     chmod +x $HADOOP_HOME/sbin/start-dfs.sh && \
     chmod +x $HADOOP_HOME/sbin/start-yarn.sh
@@ -63,8 +63,9 @@ RUN mkdir -p ~/hdfs/namenode && \
 
 # format namenode
 # TODO run this manually first to get the command right
-#RUN /usr/hadoop/bin/hdfs namenode -format
+RUN /usr/hadoop/bin/hdfs namenode -format
 
 # TODO do I need this
 # sbin/start-dfs.sh
-CMD ["/usr/sbin/init"]
+
+CMD [ "sh", "-c", "service ssh start; bash"]

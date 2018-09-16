@@ -42,7 +42,7 @@ COPY config/* /tmp/
 
 # manage configuration files
 RUN cp /tmp/ssh_config ~/.ssh/config && \
-    cp /tmp/hadoop-env.sh /HADOOP_HOME/etc/hadoop/hadoop-env.sh && \
+    cp /tmp/hadoop-env.sh $HADOOP_HOME/etc/hadoop/hadoop-env.sh && \
     cp /tmp/hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml && \
     cp /tmp/core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml && \
     cp /tmp/mapred-site.xml $HADOOP_HOME/etc/hadoop/mapred-site.xml && \

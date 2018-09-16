@@ -13,5 +13,6 @@
     <property>
         <name>dfs.replication</name>
         <value>2</value>
+        <description>Default block replication. The default is 3.</description>
     </property>
 </configuration>

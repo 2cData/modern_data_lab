@@ -1,15 +1,14 @@
 # Create a HAdoop cluster
 
-FROM 2cdata/modern_data_lab:lab-one AS lab_two
+FROM 2cdata/modern_data_lab:lab-one AS lab-two
 
 MAINTAINER 2CData <david.callaghan@2c-data.com>
 
 # Install ssh without key
-RUN ssh-keygen -t rsa -f ~/.ssh/id_rsa -P '' && \
+RUN yum -y install openssh-server openssh-clients && \
+    ssh-keygen -t rsa -f ~/.ssh/id_rsa -P '' && \
     cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && \
-    chmod 0600 ~/.ssh/authorized_keys
-
-RUN systemctl enable sshd && \
+    systemctl enable sshd && \
     systemctl start sshd.service
 
 EXPOSE 22
@@ -41,5 +40,5 @@ RUN mkdir -p ~/hdfs/namenode && \
 # format namenode
 RUN /usr/local/hadoop/bin/hdfs namenode -format
 
-# TODO do I need this?
+# TODO do I need this
 # sbin/start-dfs.sh

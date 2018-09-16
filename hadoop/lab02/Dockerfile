@@ -41,13 +41,23 @@ EXPOSE 22
 COPY config/* /tmp/
 
 # manage configuration files
-RUN mv /tmp/ssh_config ~/.ssh/config && \
-    mv /tmp/hadoop-env.sh /usr/local/hadoop/etc/hadoop/hadoop-env.sh && \
-    mv /tmp/hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml && \
-    mv /tmp/core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml && \
-    mv /tmp/mapred-site.xml $HADOOP_HOME/etc/hadoop/mapred-site.xml && \
-    mv /tmp/yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml && \
-    mv /tmp/slaves $HADOOP_HOME/etc/hadoop/slaves
+#RUN mv /tmp/ssh_config ~/.ssh/config && \
+#    mv /tmp/hadoop-env.sh /usr/local/hadoop/etc/hadoop/hadoop-env.sh && \
+#    mv /tmp/hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml && \
+#    mv /tmp/core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml && \
+#    mv /tmp/mapred-site.xml $HADOOP_HOME/etc/hadoop/mapred-site.xml && \
+#    mv /tmp/yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml && \
+#    mv /tmp/slaves $HADOOP_HOME/etc/hadoop/slaves
+
+RUN mv /tmp/ssh_config ~/.ssh/config
+#RUN mv /tmp/hadoop-env.sh /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+RUN mv /tmp/hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml 
+RUN mv /tmp/core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml
+RUN mv /tmp/mapred-site.xml $HADOOP_HOME/etc/hadoop/mapred-site.xml
+RUN mv /tmp/yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml
+RUN mv /tmp/slaves $HADOOP_HOME/etc/hadoop/slaves
+
+
 
 # manage executable scripts
 RUN mv /tmp/start-hadoop.sh ~/start-hadoop.sh && \

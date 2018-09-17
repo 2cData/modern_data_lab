@@ -12,4 +12,4 @@ RUN cd ~ && \
 
 # Set environment variables
 ENV HADOOP_HOME /usr/hadoop
-ENV PATH=$PATH:/usr/local/hadoop/bin:/usr/local/hadoop/sbin
+ENV PATH=$PATH:/usr/hadoop/bin:/usr/hadoop/sbin

@@ -21,7 +21,7 @@ COPY config/* /tmp/
 
 # manage ssh configuration files
 RUN cp /tmp/ssh_config ~/.ssh/config && \
-    chmod 600 ~/.ssh/config
+    chmod 600 ~/.ssh/config && \
     chown root:root ~/.ssh/config
 
 # manage hadoop configuration files

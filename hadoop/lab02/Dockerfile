@@ -49,13 +49,13 @@ RUN mkdir -p ~/hdfs/namenode && \
 # format namenode
 RUN /usr/hadoop/bin/hdfs namenode -format
 
+# run init scripts
+RUN service sshd start
+RUN $HADOOP_PREFIX/etc/hadoop/hadoop-env.sh
+RUN $HADOOP_PREFIX/sbin/start-dfs.sh
+
 # set up scripts
 RUN $HADOOP_PREFIX/bin/hdfs dfs -mkdir -p /user/root
 RUN mkdir $HADOOP_PREFIX/input
 RUN cp $HADOOP_PREFIX/etc/hadoop/*.xml $HADOOP_PREFIX/input
 RUN $HADOOP_PREFIX/bin/hdfs dfs -put $HADOOP_PREFIX/etc/hadoop/ input
-
-# run init scripts
-RUN service sshd start
-RUN $HADOOP_PREFIX/etc/hadoop/hadoop-env.sh
-RUN $HADOOP_PREFIX/sbin/start-dfs.sh
